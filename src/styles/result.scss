@@ -1,0 +1,41 @@
+.result--wrapper {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .result--title {
+    margin: 0;
+    padding: 20px;
+    .hr {
+      padding: 10px;
+      background-color: yellowgreen;
+      border-radius: 50px;
+    }
+  }
+  .result--sum {
+    padding: 20px;
+    .hr {
+      padding: 10px;
+      background-color: yellowgreen;
+      border-radius: 50px;
+    }
+  }
+  .btn--wrapper {
+    padding: 20px;
+    .result--btn {
+      cursor: pointer;
+      width: 100px;
+      height: 30px;
+      margin-left: 20px;
+      background-color: white;
+      border: 1px solid #bbb;
+      border-radius: 7px;
+      &:first-child {
+        margin-left: 0px;
+      }
+    }
+  }
+}
