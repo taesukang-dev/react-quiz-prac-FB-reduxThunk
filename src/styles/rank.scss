@@ -1,0 +1,53 @@
+.rank--wrapper {
+  position: relative;
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .rank--header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding: 20px;
+    border: 1px solid #eee;
+    .rank--hr {
+      padding: 10px;
+      background-color: yellowgreen;
+      border-radius: 50px;
+    }
+  }
+  .rank--card {
+    display: flex;
+    align-items: center;
+    border: 1px solid #eee;
+    width: 300px;
+    text-align: left;
+    .rank--hight {
+      padding: 10px;
+    }
+    .rank--title {
+      border-left: 1px solid #ddd;
+      margin-left: 10px;
+      .rank--name {
+        margin-left: 10px;
+        margin-bottom: 10px;
+      }
+      .rank--text {
+        margin-left: 10px;
+      }
+    }
+  }
+  .rank--btnwrapper {
+    position: absolute;
+    bottom: 10%;
+    .rank--btn {
+      border: none;
+      padding: 10px;
+      width: 150px;
+      background-color: #667895;
+      border-radius: 20px;
+    }
+  }
+}

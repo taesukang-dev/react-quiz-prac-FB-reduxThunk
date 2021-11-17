@@ -1,9 +1,17 @@
+import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router'
+import { insertPointAndComment } from '../redux/modules/user'
+import { useRef } from 'react'
 import '../styles/result.scss'
 
-const Result = () => {
+const Result = ({ nowUser }) => {
   const state = useSelector((state) => state.quizReducer)
+  let navigate = useNavigate()
+  let dispatch = useDispatch()
+  let comment = useRef()
   let sum = 0
+
   state.filter((el) => {
     return el.a === el.uA ? (sum += 20) : sum
   })
@@ -15,10 +23,27 @@ const Result = () => {
       <h1 className="result--sum">
         <span className="hr">{sum}</span>
       </h1>
-      <div>이 정도면 아주 친한 친구 사이! 앞으로도 더 친하게 지내요!</div>
+      <textarea
+        ref={comment}
+        className="textArea"
+        placeholder="뇌브에게 격려의 한마디 해주세요"
+      />
       <div className="btn--wrapper">
-        <button className="result--btn">점수보기</button>
-        <button className="result--btn">랭킹보기</button>
+        <button
+          className="result--btn"
+          onClick={() => {
+            dispatch(
+              insertPointAndComment({
+                id: nowUser,
+                sum: sum,
+                comment: comment.current.value,
+              })
+            )
+            navigate('/rank')
+          }}
+        >
+          남기고 랭킹보기
+        </button>
       </div>
     </div>
   )

@@ -40,7 +40,7 @@ const Button = styled.button`
   margin: auto;
 `
 
-const Start = () => {
+const Start = ({ setNowUser }) => {
   let user = useRef()
   const dispatch = useDispatch()
   return (
@@ -51,7 +51,12 @@ const Start = () => {
         </Title>
         <Input placeholder="내 이름" ref={user} />
         <Link to="/quiz/0">
-          <Button onClick={() => dispatch(createUser(user.current.value))}>
+          <Button
+            onClick={() => {
+              setNowUser(user.current.value)
+              dispatch(createUser(user.current.value))
+            }}
+          >
             시작하기
           </Button>
         </Link>
