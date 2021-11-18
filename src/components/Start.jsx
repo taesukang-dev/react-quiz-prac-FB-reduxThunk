@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { createUser } from '../redux/modules/user'
+import { adduserFB } from '../redux/modules/user'
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -54,7 +54,7 @@ const Start = ({ setNowUser }) => {
           <Button
             onClick={() => {
               setNowUser(user.current.value)
-              dispatch(createUser(user.current.value))
+              dispatch(adduserFB(user.current.value))
             }}
           >
             시작하기

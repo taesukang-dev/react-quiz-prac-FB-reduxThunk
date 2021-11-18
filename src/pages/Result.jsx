@@ -1,19 +1,25 @@
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
-import { insertPointAndComment } from '../redux/modules/user'
+import { insertPointAndCommentFB } from '../redux/modules/user'
 import { useRef } from 'react'
 import '../styles/result.scss'
 
-const Result = ({ nowUser }) => {
+const Result = ({ nowUser, answer }) => {
   const state = useSelector((state) => state.quizReducer)
+  const user = useSelector((state) => state.userReducer)
   let navigate = useNavigate()
   let dispatch = useDispatch()
   let comment = useRef()
   let sum = 0
+  let userId = user.map((el) => {
+    if (el.name === nowUser) {
+      return el.id
+    }
+  })
 
-  state.filter((el) => {
-    return el.a === el.uA ? (sum += 20) : sum
+  state.filter((el, i) => {
+    return +el.a === answer[i] ? (sum += 20) : sum
   })
   return (
     <div className="result--wrapper">
@@ -33,8 +39,9 @@ const Result = ({ nowUser }) => {
           className="result--btn"
           onClick={() => {
             dispatch(
-              insertPointAndComment({
-                id: nowUser,
+              insertPointAndCommentFB({
+                id: userId.toString(),
+                name: nowUser,
                 sum: sum,
                 comment: comment.current.value,
               })

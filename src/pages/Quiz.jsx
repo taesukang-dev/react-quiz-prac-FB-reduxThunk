@@ -1,15 +1,13 @@
-import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router'
 import styled from 'styled-components'
-import { replyAnswer } from '../redux/modules/quiz'
 import '../styles/quiz.scss'
 
-const Quiz = () => {
+const Quiz = ({ setAnswer, answer }) => {
   const state = useSelector((state) => state.quizReducer)
-  const dispatch = useDispatch()
   const { id } = useParams()
   const navigate = useNavigate()
+
   return (
     <div className="quiz--wrapper">
       <ProgressForm>
@@ -22,7 +20,7 @@ const Quiz = () => {
         <button
           className="btn"
           onClick={() => {
-            dispatch(replyAnswer({ id: id, uA: 1 }))
+            setAnswer([...answer, 1])
             if (+id === 4) {
               navigate('/result')
             } else {
@@ -35,7 +33,7 @@ const Quiz = () => {
         <button
           className="btn"
           onClick={() => {
-            dispatch(replyAnswer({ id: id, uA: 0 }))
+            setAnswer([...answer, 0])
             if (+id === 4) {
               navigate('/result')
             } else {
